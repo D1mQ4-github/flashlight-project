@@ -13,11 +13,12 @@ const $flashlight = document.querySelector('.dynamic-image'),
     $controllsOpen = document.querySelector('.controlls__open'),
     $settings = document.querySelector('.settings'),
     $shop = document.querySelector('.shop'),
-    //Размеры игрового поля относительно размера экрана пользователя
     fieldWidth = $wrapper.offsetWidth,
     fieldHeight = $wrapper.offsetHeight;
 
-let vars = {
+//Экспорт переменных
+
+export default {
     flashlightSize,
     score,
     $object,
@@ -33,6 +34,4 @@ let vars = {
     $shop,
     fieldHeight,
     fieldWidth
-}
-
-export default vars;
+};

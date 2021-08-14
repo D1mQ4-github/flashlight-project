@@ -1,124 +1,70 @@
 import vars from './modules/variables.js';
+import general from './modules/general.js';
+import shop from './modules/shop.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     //Инициализация счета при первой загрузке из переменной score - 0
-    setScore(score);
+    general.setScore(vars.score);
 
-    const setScore = (val) => {
-        vars.$score.textContent = val;
-    }
-
-    const getMoney = (e) => {
-        if (e.target.parentElement.dataset.amount) {
-            const amount = e.target.parentElement.dataset.amount;
-            score += +amount;
-            setScore(score);
-            $object.remove();
-            renderObject();
-        }
-    }
-
-    const getRandomAmount = (max) => {
-        const num = Math.floor(Math.random() * max);
-        return ((num) < 1) ? getRandomAmount(max) : num;
-    }
-
-    const renderObject = () => {
-        const amount = getRandomAmount(1000);
-
-        let object = document.createElement('div'),
-            inner = document.createElement('span');
-
-        object.setAttribute('class', 'object');
-        object.setAttribute('data-amount', amount);
-        inner.textContent = amount + '$';
-        object.append(inner);
-        $flashlight.append(object);
-        object.style.cssText = `
-            top: ${getRandomAmount(fieldHeight - object.offsetWidth)}px; 
-            left: ${getRandomAmount(fieldWidth - object.offsetHeight)}px`;
-
-        $object = document.querySelector('.object');
-        $object.addEventListener('click', getMoney);
-    }
-
-    $wrapper.addEventListener('mousemove', (e) => {
+    vars.$wrapper.addEventListener('mousemove', (e) => {
         let x = e.clientX,
             y = e.clientY;
 
-        $flashlight.style.cssText += `clip-path: circle(${flashlightSize - 4}px at ${x}px ${y}px)`;
-        $shadow.style.cssText = `
-            top: ${y - flashlightSize}px; 
-            left: ${x - flashlightSize}px; 
-            width: ${flashlightSize * 2}px; 
-            height: ${flashlightSize * 2}px`;
+        vars.$flashlight.style.cssText += `clip-path: circle(${vars.flashlightSize - 4}px at ${x}px ${y}px)`;
+        vars.$shadow.style.cssText = `
+            top: ${y - vars.flashlightSize}px; 
+            left: ${x - vars.flashlightSize}px; 
+            width: ${vars.flashlightSize * 2}px; 
+            height: ${vars.flashlightSize * 2}px`;
     });
 
-    $wrapper.addEventListener('mousewheel', (e) => {
-        let diff = flashlightSize - (e.deltaY / 100)
-        flashlightSize = (diff < 100) ? 100 : diff;
+    vars.$wrapper.addEventListener('mousewheel', (e) => {
+        let diff = vars.flashlightSize - (e.deltaY / 100)
+        vars.flashlightSize = (diff < 100) ? 100 : diff;
     });
 
-    $effectInvert.addEventListener('input', (e) => {
-        $flashlight.style.cssText += `
+    vars.$effectInvert.addEventListener('input', (e) => {
+        vars.$flashlight.style.cssText += `
             filter: invert(${e.target.value}%);
         `;
     });
 
-    $effectSepia.addEventListener('input', (e) => {
-        $flashlight.style.cssText += `
+    vars.$effectSepia.addEventListener('input', (e) => {
+        vars.$flashlight.style.cssText += `
             filter: sepia(${e.target.value}%);
         `;
     });
 
-    $effectSaturate.addEventListener('input', (e) => {
-        $flashlight.style.cssText += `
+    vars.$effectSaturate.addEventListener('input', (e) => {
+        vars.$flashlight.style.cssText += `
             filter: saturate(${e.target.value}%);
         `;
     });
 
-    $controllsOpen.addEventListener('click', () => {
-        if ($settings.classList.contains('settings-active')) {
-            $settings.classList.remove('settings-active')
+    vars.$controllsOpen.addEventListener('click', () => {
+        if (vars.$settings.classList.contains('settings-active')) {
+            vars.$settings.classList.remove('settings-active')
         } else {
-            $settings.classList.add('settings-active')
+            vars.$settings.classList.add('settings-active')
         }
     });
 
-    const ability = (name, price, cb) => {
-        const btn = document.createElement('button');
-        btn.classList.add('shop__btn');
-        btn.textContent = `${name} [-${price}$]`;
-        $shop.append(btn);
-
-        if (score < price) {
-            btn.setAttribute('disabled', '');
-        } else {
-            btn.removeAttribute('disabled', '');
-            btn.addEventListener('click', () => {
-                cb();
-                score -= price;
-                setScore(score);
-            });
-        }
-    }
-
     //CAREFULL!!! SHIT CODE THERE                   ..everywhere
     setInterval(() => {
-        $shop.innerHTML = '';
-        ability('Fix flashlight', 1000, () => {
-            $flashlight.style.cssText += `
+        vars.$shop.innerHTML = '';
+        shop.ability('Fix flashlight', 1000, () => {
+            vars.$flashlight.style.cssText += `
             animation-iteration-count: 1`;
         });
-        ability('Useless piece of shit', 10000, () => {
-            $flashlight.style.cssText += `
+        shop.ability('Useless piece of shit', 10000, () => {
+            vars.$flashlight.style.cssText += `
             animation-iteration-count: 1`;
         });
-        ability('Useless piece of shit #2', 23000, () => {
-            $flashlight.style.cssText += `
+        shop.ability('Useless piece of shit #2', 23000, () => {
+            vars.$flashlight.style.cssText += `
             animation-iteration-count: 1`;
         });
     }, 1000);
 
-    renderObject();
+    general.renderObject();
 });
