@@ -49,22 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    //CAREFULL!!! SHIT CODE THERE                   ..everywhere
-    setInterval(() => {
-        vars.$shop.innerHTML = '';
-        shop.ability('Fix flashlight', 1000, () => {
-            vars.$flashlight.style.cssText += `
-            animation-iteration-count: 1`;
-        });
-        shop.ability('Useless piece of shit', 10000, () => {
-            vars.$flashlight.style.cssText += `
-            animation-iteration-count: 1`;
-        });
-        shop.ability('Useless piece of shit #2', 23000, () => {
-            vars.$flashlight.style.cssText += `
-            animation-iteration-count: 1`;
-        });
-    }, 1000);
-
     general.renderObject();
 });

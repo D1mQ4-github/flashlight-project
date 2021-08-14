@@ -21,4 +21,21 @@ export const ability = (name, price, cb) => {
     }
 }
 
+//CAREFULL!!! SHIT CODE THERE                   ..everywhere
+setInterval(() => {
+    vars.$shop.innerHTML = '';
+    ability('Fix flashlight', 1000, () => {
+        vars.$flashlight.style.cssText += `
+            animation-iteration-count: 1`;
+    });
+    ability('Useless piece of shit', 10000, () => {
+        vars.$flashlight.style.cssText += `
+            animation-iteration-count: 1`;
+    });
+    ability('Useless piece of shit #2', 23000, () => {
+        vars.$flashlight.style.cssText += `
+            animation-iteration-count: 1`;
+    });
+}, 1000);
+
 export default { ability };
