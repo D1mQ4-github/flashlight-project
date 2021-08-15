@@ -1,0 +1,27 @@
+/* 
+// Стили для игровых объектов
+// с которыми взаимодействует пользователь
+// !!!НЕ РЕДАКТИРОВАТЬ!!! Если что-то нужно добавить или изменить
+// дописываем в конце файла после ==============
+*/
+
+.object {
+    position: absolute;
+}
+
+.object span {
+    display: block;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 1);
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.object span:hover {
+    background-color: rgba(255, 255, 0, .5);
+    box-shadow: 0px 0px 25px 1px rgba(255, 255, 0, .5);
+}
+
+
+/* ======================= */

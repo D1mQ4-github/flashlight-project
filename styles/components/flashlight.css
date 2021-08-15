@@ -1,0 +1,44 @@
+/* 
+// Стили для базовой настройки эффекта фонарика
+// !!!Не редактировать стили!!! Если что-то нужно добавить или изменить
+// дописываем в конце файла после ==============
+*/
+
+.wrapper {
+    overflow: hidden;
+    position: relative;
+    border: 1px solid black;
+}
+
+.wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    user-select: none;
+}
+
+.static-image {
+    filter: brightness(15%);
+    user-select: none;
+}
+
+.dynamic-image {
+    position: relative;
+    height: 100vh;
+    opacity: .99;
+    animation: interference 25s infinite;
+    user-select: none;
+}
+
+.shadow {
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: inset 0px 0px 50px 40px rgba(0, 0, 0, .9);
+    user-select: none;
+}
+
+
+/* ======================= */
